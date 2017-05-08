@@ -14,7 +14,7 @@ Phần 2: Lý do lựa chọn nó:
 Giúp các chat & trao đổi thông tin giữa nhiều người dùng
 
 Phần 3: Hướng xây dựng:
-ngôn ngữ nguồn mở triển khai: python
-Phạm Vi hoạt động: Online
-Triển khai trên Ubuntu, Linux
-Hỗ trợ nhiều client chat cùngc lúc
+	ngôn ngữ nguồn mở triển khai: python
+	Phạm Vi hoạt động: Online
+	Triển khai trên Ubuntu, Linux
+	Hỗ trợ nhiều client chat cùngc lúc
