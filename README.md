@@ -28,4 +28,5 @@ Thành viên:
 	<br>	Phạm Vi hoạt động: Online
 	<br>	Triển khai trên Ubuntu, Linux
 	<br>	Hỗ trợ nhiều client chat cùngc lúc
+<img src='/socket.jpg'>
 </p>
