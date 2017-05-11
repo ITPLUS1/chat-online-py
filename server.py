@@ -21,4 +21,32 @@ def Make_Server(HOST,PORT,MaxClient):
     server_socket.bind((HOST, PORT))
     server_socket.listen(MaxClient)
     
+    
+    
+if __name__=="__main__":
+    Make_Server(HOST,PORT,10)
+    while 1:
+            conn, client = server.accept()
+    try:
+        print ("Connection from", client)
+ 
+        while True:
+            data = conn.recv(1024)
+            print ("Receive from client:", data)
+            if data:
+                print ("Response to client")
+                conn.sendall(data)
+            else:
+                print ("No data received")
+                break
+    finally:
+        conn.close()
+    
+    
+    
+    
+    
+    
+    
+    
    
