@@ -1,1 +1,35 @@
 Chat server started on port 4444
+#user:kk
+[14:13]-kk-hello
+#user:x
+[14:13]-x-chao ae
+[14:13]-kk-nothing much
+[14:13]-kk-how 's going
+[14:13]-x-nothing much
+[14:13]-x-
+[14:13]-x-d
+[14:13]-x-d
+[14:13]-x-s
+[14:13]-x-dsa
+[14:13]-x-d
+[14:13]-x-as
+[14:13]-x-fd
+[14:13]-x-f
+[14:13]-x-dsf
+[14:13]-x-ds
+[14:13]-x-fsd
+[14:13]-kk-sdf
+[14:13]-kk-ds
+[14:13]-kk-fsd
+[14:13]-kk-fa
+[14:13]-kk-
+[14:13]-kk-f
+[14:14]-kk-chaof
+[14:14]-x-nothign
+#user:thai-handsome1412
+[14:14]-thai-handsome1412-chao moi nguoi
+x is offline
+#user:Nothing-in-your-Eyes
+-----------------thai-handsome1412 is offline
+-----------------kk is offline
+-----------------Nothing-in-your-Eyes is offline
