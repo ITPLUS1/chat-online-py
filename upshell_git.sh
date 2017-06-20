@@ -52,7 +52,7 @@ git remote remove origin
 git reset --mixed
 
 git remote add origin "$path"
-git remote set-url origin git@github.com:$username/4305_PNNM.git
+git remote set-url origin git@github.com:$username/TCU1/ChatClientServer_Python
 
 #git pull origin master
 git push -f origin NguyenDinhThai
