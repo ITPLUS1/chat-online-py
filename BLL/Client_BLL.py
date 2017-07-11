@@ -8,7 +8,7 @@ import select
 import time
 
 from Client_BLL import *
-from Process_DTL import *
+from Process_BLL import *
 socket_list=[]
 class Client:
     def __init__(self):

@@ -9,7 +9,7 @@ import time
 
 sys.path.append("BLL")
 from Client_BLL import *
-from Process_DTL import *
+from Process_BLL import *
 
 timeout=2
 class clientChat:

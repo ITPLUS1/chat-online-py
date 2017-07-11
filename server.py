@@ -9,7 +9,7 @@ import time
 
 sys.path.append("BLL")
 from Server_BLL import *
-from Process_DTL import *
+from Process_BLL import *
 
 #Nhan Dulieu
 RECV_BUFFER = 4096
