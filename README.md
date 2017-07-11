@@ -50,6 +50,7 @@ Xem tài liệu thiết kế chi tiết tại <a href="https://github.com/TCU1/C
 <h2>8: Thông tin giấy phép & tổ chức mã nguồn: </h2>
 Thông tin giấy phép và tổ chức mã nguồn ở <a href="https://github.com/TCU1/ChatClientServer_Python/tree/master/Document">đây</a>
 
-<h2><a href="https://github.com/TCU1/ChatClientServer_Python/tree/master/Document">9: Danh sách mã lỗi: </a></h2>
+<h2>9: Danh sách mã lỗi: </h2>
+Xem danh sách mã lỗi ở <a href="https://github.com/TCU1/ChatClientServer_Python/blob/master/Readme/issues.md">đây</a>
 
 
