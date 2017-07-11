@@ -44,7 +44,6 @@ echo
 echo "*** working"
 echo
 
-
 git add *
 git commit -m "$commit"
 git remote remove origin

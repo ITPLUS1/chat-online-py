@@ -14,12 +14,18 @@ from Process import *
 timeout=2
 class clientChat:
     def __init__(self):
-        print "\nChào mừng đến với phần mềm chat online X\n"
+        print """
+
+
+	\nChào mừng đến với chat online X
+
+
+	"""
 
     def chat_client(self):
         #os.system('clear')
         if(len(sys.argv) < 3) :
-            print 'Cú pháp : python client.py [Server] [cổng]'
+            print bcolors.BOLD+bcolors.FAIL+'Cú pháp : python client.py [Server] [cổng]'+bcolors.ENDC+"\n\n"
             sys.exit()
 
         host = sys.argv[1]
@@ -31,8 +37,8 @@ class clientChat:
             if s:
                 if Cl.TrytoConnect(s,host,port):
                     #print s,host,port
-                    print 'Kết nối đến mày chủ thành công, Bây giờ bạn có thể chém gió '
-                    print '#exit: Thoát \n\n'
+                    print bcolors.BOLD+bcolors.OKBLUE + 'Kết nối đến mày chủ thành công, Bây giờ bạn có thể chém gió '+ 		bcolors.ENDC
+                    print bcolors.BOLD+bcolors.FAIL+'#exit: Thoát \n\n'+bcolors.ENDC
                     name=raw_input("Nhập NickNam3: ")
                     s.send("#user:"+name)
                     #sys.stdout.write('['+getCurrentDateTime('t')+'][Me] '); sys.stdout.flush()
@@ -43,7 +49,8 @@ class clientChat:
 
                         # Get the list sockets which are readable
                         ready_to_read,ready_to_write,in_error = select.select(socket_list , [], [])
-                        #print "ready_to_read ",ready_to_read
+                        #print socket_list," | ready_to_read ",ready_to_read
+			#time.sleep(2)
                         for sock in ready_to_read:
                             Cl.StreamData(sock,s)
                 else:

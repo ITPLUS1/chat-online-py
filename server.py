@@ -28,30 +28,32 @@ class ServerChat:
     def __init__(self):
         self.pr = Process()
         self.server = Server()
-        print "\n\nKhởi Tạo Server Thành công \n\n"
 
-    #MAKE A NEW SERVER
     def chat_server(self):
+	# Tao Server
         server_socket       = self.server.BindServer(PORT, MaxClient)
-        Tranf               = self.server.TranferToClient()
-        print Tranf
+        
+	# Tao 1 Socket, [Ket noi den server de gui message to Client]
+        #Tranf               = self.server.TranferToClient()
+
         # add server socket object to the list of readable connections
+        # Them vao danh sach readable
         SOCKET_LIST.append(server_socket)
         #SOCKET_LIST.append(Tranf)
+
+	# Thong bao
         MessageContent = self.pr.ServerMsg("on",PORT)
         self.pr.show(MessageContent)
 
         try:
             while 1:
-                time.sleep(1)
-                print NickName
                 # get the list sockets which are ready to be read through select
                 # 4th arg, time_out  = 0 : poll and never block
                 ready_to_read, ready_to_write, in_error = select.select(SOCKET_LIST, [], [], 0)
 
                 #print "SOCKET_LIST ", SOCKET_LIST
-                #print "server_socket ",server_socket
-                #print ready_to_read, ready_to_write, in_error
+                #print "\nserver_socket ",server_socket
+                #print "ready ",ready_to_read, ready_to_write, in_error
                 #time.sleep(1)
                 for sock in ready_to_read:
                     # a new connection request recieved
@@ -59,7 +61,14 @@ class ServerChat:
 
                         sockfd, addr = server_socket.accept()
                         #print "New conn: ",sockfd
+
+			
+			#Send data to new user
+			#self.server.SendtoClient(server_socket,Tranf,sockfd,message)
+
+			# Them vao List
                         SOCKET_LIST.append(sockfd)
+
 
                     # a message from a client, not a new connection
                     else:
@@ -68,14 +77,17 @@ class ServerChat:
                             # receiving data from the socket.
                             RecvData = sock.recv(RECV_BUFFER)
                             if RecvData:
-                                #Process Data And Broadcast to All User
+                                #Process Data & Send to client
                                 self.server.ProcessData(server_socket,Tranf,sock, RecvData)
+
                             else:
-                                # remove the socket that's broken
+                                # remove the socket that's broken or client Logout
                                 if sock in SOCKET_LIST:
                                     MessageContent = self.server.MsgUserLogout(sock)
                                     SOCKET_LIST.remove(sock)
+
                                     # at this stage, no data means probably the connection has been broken
+
                                 self.server.broadcast(server_socket, sock, MessageContent)
                                 continue
 
