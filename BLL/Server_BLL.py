@@ -1,5 +1,16 @@
 # chat_server.py
 # -*- coding: utf-8 -*-
+# Chuong trinh chat online
+# Nguyen Dinh Thai - thai.itplus@gmail.com - fb: chickns0up
+#
+#
+#
+#
+#
+#
+
+##########################################################################
+
 from Process_BLL import *
 
 import socket
@@ -15,6 +26,10 @@ NickName        ={}
 #[Object Socket] Send Hello To New USer
 Tranf           =None
 
+
+##########################################################################
+
+
 class Server:
     def __init__(self):
         os.system('clear')
@@ -22,7 +37,7 @@ class Server:
         self.Host           = ''
         self.msg            = Msg()
 	self.c		    =bcolors()
-	self.Server="1"
+	self.Server	    ="1"
 	self.Port1=self.Port2=None
 
 
@@ -49,7 +64,7 @@ class Server:
             server_socket=self.Bind(Port,MaxClient)
             
         except:
-            ###############################################################
+        #----------------------------------------------------
             try:
                 # [thong bao] Server 1 ban, huac bi loi
                 self.Ps.msgServerBusy(Port2)                
@@ -61,7 +76,7 @@ class Server:
                 server_socket=self.Bind(Port2,MaxClient)
 
             except:
-                # [thong bao] 
+                # [thong bao]  =Loi khi tao server
                 self.Ps.msgServerError(Port2)
                 return None
                 
@@ -79,8 +94,7 @@ class Server:
                 self.Server="2"
 
                 return server_socket
-            ###############################################################            
-        
+        #----------------------------------------------------            
         else:
             # [thong bao] khoi tao thanh cong
             self.Ps.ServerMsg("on")
@@ -190,13 +204,19 @@ class Server:
             else:
                 # send data to Client
                 MessageContent = msgUsrLogout[1]
-                print msgUsrLogout[0]
+
 
                 # Remove User From UserList
                 self.Ps.RemoveNickName(NickName,newSock)
 
                 # Dem so luong user
                 countUser=self.Ps.MsgCountUser(NickName)
+
+		# [Thong bao] Thong tin User
+                print msgUsrLogout[0]
+
+		# [Thong bao] Dem so luong user hien tai
+                print countUser
             
                 self.broadcast(newserverSocket, newSock, MessageContent)
                 self.broadcast(newserverSocket, newSock, countUser)
