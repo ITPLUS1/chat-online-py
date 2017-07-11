@@ -9,7 +9,7 @@ import time
 
 sys.path.append("BLL")
 from Server_BLL import *
-from Process import *
+from Process_DTL import *
 
 #Nhan Dulieu
 RECV_BUFFER = 4096
@@ -31,19 +31,15 @@ class ServerChat:
 
     def chat_server(self):
 	# Tao Server
-        server_socket       = self.server.BindServer(PORT, MaxClient)
+        server_socket       = self.server.BindServer(PORT,PORT2, MaxClient)
         
 	# Tao 1 Socket, [Ket noi den server de gui message to Client]
-        #Tranf               = self.server.TranferToClient()
+        Tranf               = self.server.TranferToClient()
 
         # add server socket object to the list of readable connections
         # Them vao danh sach readable
         SOCKET_LIST.append(server_socket)
         #SOCKET_LIST.append(Tranf)
-
-	# Thong bao
-        MessageContent = self.pr.ServerMsg("on",PORT)
-        self.pr.show(MessageContent)
 
         try:
             while 1:
@@ -78,7 +74,7 @@ class ServerChat:
                             RecvData = sock.recv(RECV_BUFFER)
                             if RecvData:
                                 #Process Data & Send to client
-                                self.server.ProcessData(server_socket,Tranf,sock, RecvData)
+                                self.server.ProcessData(server_socket, Tranf, sock, RecvData)
 
                             else:
                                 # remove the socket that's broken or client Logout
@@ -93,12 +89,12 @@ class ServerChat:
 
                         # exception
                         except:
-                            MessageContent =self.server.MsgUserLogout(sock)
+                            MessageContent =self.pr.MsgUserLogout(NickName,sock)
                             self.server.broadcast(server_socket, sock, MessageContent)
                             continue
         except:
             print "----------------------------------------------------------"
-            MessageContent = self.pr.ServerMsg("off", PORT)
+            MessageContent = self.pr.ServerMsg("off")
             self.pr.show(MessageContent)
             # print data_Stream
             # file_Store.write(data_Stream)

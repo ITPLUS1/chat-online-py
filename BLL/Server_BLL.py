@@ -1,6 +1,6 @@
 # chat_server.py
 # -*- coding: utf-8 -*-
-from Process import *
+from Process_DTL import *
 
 import socket
 import time
@@ -20,20 +20,79 @@ class Server:
         os.system('clear')
         self.Ps             =Process()
         self.Host           = ''
-        self.Port           =0
         self.msg            = Msg()
 	self.c		    =bcolors()
+	self.Server="1"
+	self.Port1=self.Port2=None
 
-    # Khoi Tao Server voi tham so mac dinh
-    def BindServer(self,Port=4444,MaxClient=10):
-        self.Port=Port
+
+    #Bind Server
+    def Bind(self,Port,MaxClient):
         server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         server_socket.bind((self.Host, Port))
         server_socket.listen(MaxClient)
-	print bcolors.BOLD+bcolors.WARNING + "\n\nKhởi Tạo Server Thành công \n\n"+ 		bcolors.ENDC
         return server_socket
+    
 
+    # Khoi Tao Server voi tham so mac dinh
+    def BindServer(self,Port=4444,Port2=4445,MaxClient=10):
+
+        self.Port1  =Port
+        self.Port2  =Port2
+        
+        try:
+            # [thong bao] Khoi tao [server 1]
+            self.Ps.msgServerBind(Port)
+            
+            # [Khoi tao server 1]
+            server_socket=self.Bind(Port,MaxClient)
+            
+        except:
+            ###############################################################
+            try:
+                # [thong bao] Server 1 ban, huac bi loi
+                self.Ps.msgServerBusy(Port2)                
+
+                # [thong bao] Khoi tao [server 2]
+                self.Ps.msgServerBind(Port2)
+                
+                # [Khoi tao server 2]
+                server_socket=self.Bind(Port2,MaxClient)
+
+            except:
+                # [thong bao] 
+                self.Ps.msgServerError(Port2)
+                return None
+                
+            else:
+                # [thong bao] khoi tao thanh cong
+                self.Ps.ServerMsg("on")
+                
+                # [thong bao] Lay dia chi IP
+                self.Ps.msgServerOnline()
+
+                # [thong bao] Server da san sang
+                self.Ps.Line()
+                
+                # Server Name
+                self.Server="2"
+
+                return server_socket
+            ###############################################################            
+        
+        else:
+            # [thong bao] khoi tao thanh cong
+            self.Ps.ServerMsg("on")
+                
+            # [thong bao] Lay dia chi IP
+            self.Ps.msgServerOnline()
+
+            # [thong bao] Server da san sang
+            self.Ps.Line()
+
+            return server_socket
+        
 
     # broadcast chat messages to all connected clients
     def broadcast(self,server_socket, sock, message):
@@ -53,20 +112,24 @@ class Server:
 
     # Tao 1 Socket, [Ket noi den server de gui message to Client]
     def TranferToClient(self):
+        Port=self.Port1
+        if self.Server=="2":
+            Port=self.Port2
+        print Port
+            
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.settimeout(2)
         try:
-            s.connect((self.Host, self.Port))
+            s.connect((self.Host, Port))
         except:
-            SOCKET_LIST.remove(socket)
+            return None
         else:
             return s
 
 
     # Send messages to 1 connected client
-    def SendtoClient(self,server_socket,Tranf,sock,message):
-        for socket in SOCKET_LIST:
-	    
+    def SendtoClient(self,server_socket,Tranf,sock,message):       
+        for socket in SOCKET_LIST:	    
             #send the message only to peer
             if socket != server_socket and socket != Tranf:
 	        #print "socket ",socket
@@ -79,48 +142,16 @@ class Server:
                     if socket in SOCKET_LIST:
                         SOCKET_LIST.remove(socket)
 
-    # Thong bao den new user
-    def MsgNewUser(self,sock, NewNickName):
-        MessageContent=[]
-        Message =bcolors.BOLD+bcolors.OKBLUE + "[ " + self.Ps.getCurrentDateTime('t') + " ]"+bcolors.ENDC+bcolors.OKGREEN+"- *****Chào mừng thành viên: "+NewNickName+" đã vào phòng chat"+bcolors.ENDC
-        MessageContent.append(str(sock.getpeername()) + Message)
-        MessageContent.append(Message)
-        return MessageContent
 
-
-    # Thong bao trung ten new user
-    def MsgUserExist(self,sock, NewNickName):
-        MessageContent=[]
-        Message = "[ " + self.Ps.getCurrentDateTime('t') + " ]- #Tên : "+NewNickName+" đã tồn tại, vui lòng nhập tên khác"
-        MessageContent.append(str(sock.getpeername()) + Message)
-        MessageContent.append(Message)
-        return MessageContent
-
-
-
-    # Thong bao den user [Logout] huac mat ket noi
-    def MsgUserLogout(self, sock):
-        MessageContent = []
-        Message = bcolors.BOLD+bcolors.OKBLUE+"[ " + self.Ps.getCurrentDateTime('t') + " ]"+bcolors.ENDC+bcolors.FAIL+"- ***** Thành viên: "+NickName[sock.getpeername()] + " Đã thoát!!!"+bcolors.ENDC
-        MessageContent.append(NickName[sock.getpeername()] + Message)
-        MessageContent.append(Message)
-        return MessageContent
-
-    # Hien Thi Message [Nhan duoc] tu user
-    def ProcessRecvData(self,sock,RecvData):
-        MessageContent = bcolors.BOLD+bcolors.OKBLUE+"[ " + self.Ps.getCurrentDateTime('t') + "]"+bcolors.ENDC+bcolors.White+"- "+ NickName[sock.getpeername()] + " - " + RecvData.strip().replace("\r\n","")
-        #print "RecvData - MessageContent ",MessageContent
-        return MessageContent
 
     # Xu li Recvdata chua thong so
     def ProcessData(self,server_socket,Tranf,sock,RecvData):
         #print "SOCKET_LIST ", SOCKET_LIST
         # Process User Login or Logout, And Broadcast to All User
-        
-        newSock         =sock
+
         newserverSocket =server_socket
         newTranf        =Tranf
-
+        newSock         =sock
 
         if "#user" in RecvData:
             # Anh xa Socket <-> User
@@ -130,30 +161,45 @@ class Server:
                 if NewNickName in value:
                     NewNickName=value+str(1)
                     
-            NickName[newSock.getpeername()] = NewNickName
-                
+            NickName[newSock.getpeername()] = NewNickName               
 
             #print self.msg.msg2
-            msgUsr=self.MsgNewUser(newSock, NewNickName)
+            msgUsr=self.Ps.MsgNewUser(newSock, NewNickName,self.Server)
+
+            # Dem so luong user
+            countUser=self.Ps.MsgCountUser(NickName)
+
             MessageContent = msgUsr[1]
             print msgUsr[0]
-            #self.broadcast(newserverSocket, newSock, MessageContent)
+
+            print countUser
+            
+            #self.broadcast(neMsgCountUser(self,NickName)wserverSocket, newSock, MessageContent)
             self.SendtoClient(newserverSocket, newTranf, newSock, MessageContent)
+            self.SendtoClient(newserverSocket, newTranf, newSock, countUser)
 	    #self.server.broadcast(server_socket, sock, MessageContent)
 
-
-                
         elif "#exit" in RecvData:
+            
             try:
-                msgUsrLogout = self.MsgUserLogout(newSock)
+                msgUsrLogout = self.Ps.MsgUserLogout(NickName,newSock)
+                
             except:
-                pass
-
+                print "Error when exit"
+            
             else:
                 # send data to Client
                 MessageContent = msgUsrLogout[1]
                 print msgUsrLogout[0]
+
+                # Remove User From UserList
+                self.Ps.RemoveNickName(NickName,newSock)
+
+                # Dem so luong user
+                countUser=self.Ps.MsgCountUser(NickName)
+            
                 self.broadcast(newserverSocket, newSock, MessageContent)
+                self.broadcast(newserverSocket, newSock, countUser)
                 SOCKET_LIST.remove(newSock)
 
 
@@ -161,10 +207,8 @@ class Server:
         else:
             #print RecvData
             try:
-                MessageContent = self.ProcessRecvData(newSock,RecvData)
+                MessageContent = self.Ps.ProcessRecvData(NickName,newSock,RecvData)
                 self.broadcast(newserverSocket, newSock, MessageContent)
                 print MessageContent
             except:
                 pass
-
-

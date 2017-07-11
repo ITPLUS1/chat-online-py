@@ -18,11 +18,6 @@ class Process:
         except:
             return None
 
-    # [Thong bao] Khoi tao server
-    def msgServerBind(self, PORT):
-        MessageContent = "\n\n"+bcolors.BOLD+bcolors.WARNING+"[ " + self.getCurrentDateTime('t') + "]- Khởi Tạo Server | CỔNG " +str(PORT)+bcolors.ENDC+"\n"
-	print MessageContent
-
 
     def getPublicIP(self):
         try:
@@ -87,6 +82,12 @@ class Process:
 	print MessageContent
 	print MessageContent2
 
+
+
+    # [Thong bao] Khoi tao server
+    def msgServerBind(self, PORT):
+        MessageContent = "\n\n"+bcolors.BOLD+bcolors.WARNING+"[ " + self.getCurrentDateTime('t') + "]- Khởi Tạo Server | CỔNG " +str(PORT)+bcolors.ENDC+"\n"
+	print MessageContent
 
 
     # [Thong bao] Server ban
@@ -174,15 +175,6 @@ class Process:
         MessageContent = bcolors.BOLD+bcolors.OKBLUE+"[ " + self.getCurrentDateTime('t') + " ]"+bcolors.ENDC+bcolors.White+"- "+ NickName[sock.getpeername()] + " - " + RecvData.strip().replace("\r\n","")
         #print "RecvData - MessageContent ",MessageContent
         return MessageContent
-
-
-
-
-
-
-
-
-
 
 
 class bcolors:
