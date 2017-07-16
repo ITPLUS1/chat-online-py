@@ -49,7 +49,7 @@ git add *
 git commit -m "$commit"
 git remote remove origin
 
-git reset --mixed
+#git reset --mixed
 
 #git checkout TrinhVanBinh ; git pull        # just in case
 #git branch master TrinhVanBinh -f
@@ -57,7 +57,7 @@ git reset --mixed
 #git push origin master -f
 
 
-git branch TrinhVanBinh
+#git branch TrinhVanBinh
 git checkout TrinhVanBinh
 #git pull origin TrinhVanBinh
 
