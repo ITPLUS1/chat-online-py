@@ -104,7 +104,6 @@ class Process:
         MessageContent = bcolors.BOLD+bcolors.FAIL+"[ " + self.getCurrentDateTime('t') + "]- KHÔNG THỂ TẠO SERVER " +str(PORT)+bcolors.ENDC+"\n"
 	print MessageContent
 
-
     # [Thong bao] Thong tin Server 
     def ServerMsg(self, Mode):
         MessageContent = ""
