@@ -64,7 +64,7 @@ git checkout TrinhVanBinh
 git remote add origin "$path"
 #git remote set-url origin git@github.com/TCU1/ChatClientServer_Python/
 git remote set-url origin git@gist.github.com:TCU1/ChatClientServer_Python
-git push origin TrinhVanBinh
+git push -f origin TrinhVanBinh
 
 echo
 echo "DONE!!!"	
