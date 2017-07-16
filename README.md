@@ -44,7 +44,7 @@ Mục tiêu của đề tài nhằm tạo ra 1 ứng dụng chat nhóm giữa c�
 xem tại <a href="https://github.com/TCU1/ChatClientServer_Python/blob/master/Readme/programming.md">đây</a>
 
 <h2> 3: Kênh trao đổi thông tin: </h2>
-Mọi thắc mắc về ứng dụng,trao đổi thông tin... xin vui lòng vào <a href="https://www.facebook.com/chickns0up">đây</a>
+Mọi thắc mắc về ứng dụng,trao đổi thông tin... xin vui lòng vào <a href="https://www.facebook.com/itplussln/">đây</a>
 
 <h2>4: Tài liệu cho người dùng cuối:</h2>
 Xem tài liệu người dùng cuối ở <a href="">đây</a>
