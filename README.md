@@ -84,14 +84,13 @@ Xem tài liệu thiết kế chi tiết tại <a href="https://drive.google.com/
 
 
 
-
-
-
 <h1>V. Phần mềm & Bản quyền:</h1>
 
 <h2>Một số Hình Ảnh về sản Phẩm:</h2>
 <img src='img/chat.PNG'>
 <img src='img/hdsd_client.png'>
+<a href="https://www.youtube.com/watch?v=wXUi4oppHgo">Video</a>giới thiệu ứng dụng
+
 
 
 <h2>1: Mô hình triển khai & chuẩn mực lập trình: </h2>
