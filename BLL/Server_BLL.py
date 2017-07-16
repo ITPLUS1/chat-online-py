@@ -134,7 +134,6 @@ class Server:
         else:
             return s
 
-
     # Send messages to 1 connected client
     def SendtoClient(self,server_socket,Tranf,sock,message):       
         for socket in SOCKET_LIST:	    
