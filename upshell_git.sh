@@ -9,9 +9,9 @@
 #--------------------------------
 
 path="https://github.com/TCU1/ChatClientServer_Python/"
-username="balau123"
-email="thai.itplus@gmail.com"
-work_path="/home/kids/Desktop/Binh"
+username="TrinhVanBinhTCU"
+email="binhboibac.dhttll@gmail.com"
+work_path="/home/kids/Desktop/Binh/ChatClientServer_Python"
 
 git config --global user.name $username
 git config --global user.email $email
@@ -49,18 +49,24 @@ git add *
 git commit -m "$commit"
 git remote remove origin
 
-#git reset --mixed
+git reset --mixed
+
+#git checkout TrinhVanBinh ; git pull        # just in case
+#git branch master TrinhVanBinh -f
+#git checkout master
+#git push origin master -f
+
 
 git branch TrinhVanBinh
 git checkout TrinhVanBinh
-git pull TrinhVanBinh
+git pull origin TrinhVanBinh
 
 git remote add origin "$path"
 #git remote set-url origin git@github.com/TCU1/ChatClientServer_Python/
 git remote set-url origin git@gist.github.com:TCU1/ChatClientServer_Python
 
 
-git push origin TrinhVanBinh
+git push -f origin TrinhVanBinh
 
 echo
 echo "DONE!!!"	
