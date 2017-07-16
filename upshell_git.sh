@@ -59,14 +59,12 @@ git reset --mixed
 
 git branch TrinhVanBinh
 git checkout TrinhVanBinh
-git pull origin TrinhVanBinh
+#git pull origin TrinhVanBinh
 
 git remote add origin "$path"
 #git remote set-url origin git@github.com/TCU1/ChatClientServer_Python/
 git remote set-url origin git@gist.github.com:TCU1/ChatClientServer_Python
-
-
-git push -f origin TrinhVanBinh
+git push origin TrinhVanBinh
 
 echo
 echo "DONE!!!"	
