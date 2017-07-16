@@ -83,14 +83,14 @@ Xem tài liệu cho nhà phát triển tại <a href="https://drive.google.com/f
 Xem tài liệu thiết kế chi tiết tại <a href="https://drive.google.com/file/d/0BzFhBdZmpSNKXzRjR1pueWdlNVk/view?usp=sharing">đây</a>
 
 
-
 <h1>V. Phần mềm & Bản quyền:</h1>
 
 <h2>Một số Hình Ảnh về sản Phẩm:</h2>
 <img src='img/chat.PNG'>
 <img src='img/hdsd_client.png'>
-<a href="https://www.youtube.com/watch?v=wXUi4oppHgo">Video</a>giới thiệu ứng dụng
 
+<br><a href="https://www.youtube.com/watch?v=wXUi4oppHgo">Video</a>giới thiệu ứng dụng
+<br>Lịch sử phiên bản: xem tại <a href="https://github.com/TCU1/ChatClientServer_Python/blob/master/Readme/version.md">đây</a>
 
 
 <h2>1: Mô hình triển khai & chuẩn mực lập trình: </h2>
