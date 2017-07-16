@@ -11,7 +11,7 @@
 path="https://github.com/TCU1/ChatClientServer_Python/"
 username="balau123"
 email="thai.itplus@gmail.com"
-work_path="/home/kids/Desktop/Thai"
+work_path="/home/kids/Desktop/Thai/ChatClientServer_Python"
 
 git config --global user.name $username
 git config --global user.email $email
@@ -29,8 +29,9 @@ echo
 #ls -la $work_path
 echo
 
+
 git config --global core.editor "$work_path"
-git init
+#git init
 
 cd $work_path
 ls -la
@@ -44,19 +45,36 @@ echo
 echo "*** working"
 echo
 
-git add *
+echo "File to ADD: "
+read file
+
+git add "$file"
+
+echo "Add file "$file
+
+git branch NguyenDinhThai
+git checkout NguyenDinhThai
+
+
 git commit -m "$commit"
 git remote remove origin
+git reset --mixed
 
-#git reset --mixed
 git fetch origin NguyenDinhThai
 git remote add origin "$path"
 git remote set-url origin git@gist.github.com:TCU1/ChatClientServer_Python
 
-git branch NguyenDinhThai
-git checkout NguyenDinhThai
+
 #git pull origin NguyenDinhThai
 git push -f origin NguyenDinhThai
+
+
+############fix merge
+#git checkout NguyenDinhThai ; git pull        # just in case
+#git branch master NguyenDinhThai -f
+#git checkout master
+#git push origin master -f
+
 
 #echo "Merge Master <- Nguyen Dinh Thai" 
 #git checkout master

@@ -1,6 +1,9 @@
 # chat_server.py
 # -*- coding: utf-8 -*-
 
+########################################
+# Write by IT PLUS TEAM
+########################################
 import os
 import sys
 import socket
@@ -23,12 +26,12 @@ PORT2       = 8889
 #Number Of CLient Connect
 MaxClient   = 10
 
-# Lop SERVER CHAT
+# Khoi tao server
 class ServerChat:
     def __init__(self):
         self.pr = Process()
         self.server = Server()
-# Khoi tao server
+
     def chat_server(self):
 	# Tao Server
         server_socket       = self.server.BindServer(PORT,PORT2, MaxClient)
