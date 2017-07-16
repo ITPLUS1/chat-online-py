@@ -51,8 +51,8 @@ git remote remove origin
 
 #git reset --mixed
 
-#git checkout TrinhVanBinh ; git pull        # just in case
-#git branch master TrinhVanBinh -f
+git checkout TrinhVanBinh ; git pull        # just in case
+git branch master TrinhVanBinh -f
 #git checkout master
 #git push origin master -f
 
