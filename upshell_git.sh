@@ -1,6 +1,6 @@
 #-------------------------auto push
 
-#ssh-keygen -t rsa -b 4096 -C "thai.itplus@gmail.com"
+#ssh-keygen -t rsa -b 4096 -C "binhboibac.dhttll@gmail.com"
 #default: /home/kids/.ssh/id_rsa
 
 #ssh-add /home/kids/.ssh/id_rsa
@@ -9,9 +9,9 @@
 #--------------------------------
 
 path="https://github.com/TCU1/ChatClientServer_Python/"
-username="balau123"
-email="thai.itplus@gmail.com"
-work_path="/home/kids/Desktop/ChatClientServer_Python/"
+username="TrinhVanBinhTCU"
+email="binhboibac.dhttll@gmail.com"
+work_path="/home/4305"
 
 git config --global user.name $username
 git config --global user.email $email
@@ -44,6 +44,7 @@ echo
 echo "*** working"
 echo
 
+
 git add *
 git commit -m "$commit"
 git remote remove origin
@@ -54,10 +55,10 @@ git remote add origin "$path"
 #git remote set-url origin git@github.com/TCU1/ChatClientServer_Python/
 git remote set-url origin git@gist.github.com:TCU1/ChatClientServer_Python
 
-git branch master
-git checkout master
+git branch TrinhVanBinh
+git checkout TrinhVanBinh
 #git pull origin master
-git push -f origin master
+git push -f origin TrinhVanBinh
 
 echo
-echo "DONE!!!"	
+echo "DONE!!!"
